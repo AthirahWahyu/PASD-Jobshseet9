@@ -27,3 +27,4 @@ _Jawaban:_
       Kapasitas tersebut diatur melalui dua bagian penting : 
         - Inisialisasi : new StackTugasMahasiswa3(5) : pada kelas MahasiswaDemo3.
         - Alokasi memori : stack = new Mahasiswa3[size]; pada konstruktor kelas StackTugasMahasiswa3.
+3.  Pengecekan !isFull() pada method push berfungsi sebagai validasi kapasitas. Karena menggunakan array yang ukurannya statis (sudah ditentukan di awal), kita harus memastikan masih ada ruang kosong sebelum menambah data baru. Kondisi if-else tersebut adalah bentuk pencegahan dini (error handling) agar program tetap berjalan stabil dan bisa memberikan informasi yang jelas kepada pengguna saat penyimpanan sudah penuh. 
