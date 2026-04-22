@@ -274,3 +274,31 @@ _Jawaban:_
         }
     ```
 6.  Commit dan push kode program ke Github
+
+## - Praktikum 2 : Konversi Nilai Tugas ke Biner
+
+## - Praktikum 2 : Verifikasi Hasil Percobaan
+
+![Verifikasi3](./Verifikasi3.png)
+
+_Pertanyaan:_
+
+1.  Jelaskan alur kerja dari method konversiDesimalKeBiner!
+2.  Pada method konversiDesimalKeBiner, ubah kondisi perulangan menjadi while (kode != 0), bagaimana hasilnya? Jelaskan alasannya!
+
+_Jawaban:_
+
+1.  Alur kerja dari method konversiDesimalKeBiner : 
+    1. Fase Pembagian (Simpan)
+    Program melakukan perulangan selama angka desimal masih ada : 
+    - Bagi : Angka dibagi 2.
+    - Sisa : Ambil sisa baginya (0 atau 1).
+    - Push : Masukkan sisa tersebut ke dalam Stack.
+
+    2. Fase Pembalikan (Ambil)
+    Program menguras isi Stuck untuk mendapatkan urutan yang benar : 
+    - Pop : Ambil angka dari tumpukan paling atas satu per satu.
+    - Gabung : Susun angka-angka tersebut menjadi sebuah teks (String).
+    - LIFO : Karena sifat Stack, sisa bagi yang terakhir didapat otomatis menjadi angka biner yang paling depan.
+
+    Kesimpulan : Angka dibagi terus - sisanya ditumpuk - tumpukannya dibongkar dari atas ke bawah untuk menjadi hasil akhir.
