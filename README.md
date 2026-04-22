@@ -22,3 +22,8 @@ _Pertanyaan:_
 _Jawaban:_
 
 1.  Agar keluaran sesuai dengan gambar verifikasi, perulangan pada method print() yang ada pada class StackTugasMahasiswa3 harus diubah dari for (int i = 0; i <=top; i++) menjadi for (int i = top; i>= 0; i--)
+2.  - Program ini memiliki kapasitas penyimpanan statis sebanyak 5 data tugas. Angka ini ditentukan secara manual (hardcoded) saat objek stack dibuat di kelas main. Jika data ke-6 dimasukkan tanpa ada tugas yang dinilai(dihapus) terlebih dahulu, maka akan terjadi kondisi Stack Full.
+    - Implementasi Kode : 
+      Kapasitas tersebut diatur melalui dua bagian penting : 
+        - Inisialisasi : new StackTugasMahasiswa3(5) : pada kelas MahasiswaDemo3.
+        - Alokasi memori : stack = new Mahasiswa3[size]; pada konstruktor kelas StackTugasMahasiswa3.
