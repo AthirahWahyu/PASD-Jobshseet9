@@ -302,3 +302,23 @@ _Jawaban:_
     - LIFO : Karena sifat Stack, sisa bagi yang terakhir didapat otomatis menjadi angka biner yang paling depan.
 
     Kesimpulan : Angka dibagi terus - sisanya ditumpuk - tumpukannya dibongkar dari atas ke bawah untuk menjadi hasil akhir.
+
+2.   ```java
+         public String konversiDesimalKeBiner(int nilai) {
+            StackKonversi3 stack = new StackKonversi3();
+            while (nilai != 0) {
+                int sisa = nilai % 2;
+                stack.push(sisa);
+                nilai = nilai / 2;
+            }
+            String biner = new String();
+            while (!stack.isEmpty()) {
+                biner += stack.pop();
+            }
+            return biner;
+            }
+
+    Penjelasan : 
+    - Untuk nilai 0 - 100 (Normal) : Tidak ada bedanya. Hasil biner tetap benar karena angka positif yang dibagi 2 terus-menerus pasti akan berakhir di angka 0. Begitu angka jadi 0, perulangan berhenti.
+    - Untuk Nilai Negatif : jika menginputkan nilai negatif (misal -87), perulangan while (nilai != 0) akan terus berjalan (looping selamanya atau samai memori penuh) karena angka negatif yang dibagi 2 di Java bisa jadi tidak pernah tepat menyentuh angka 0. Itulah kenapa nilai > 0 sebenarnya lebih aman.
+
