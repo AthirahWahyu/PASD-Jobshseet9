@@ -322,3 +322,178 @@ _Jawaban:_
     - Untuk nilai 0 - 100 (Normal) : Tidak ada bedanya. Hasil biner tetap benar karena angka positif yang dibagi 2 terus-menerus pasti akan berakhir di angka 0. Begitu angka jadi 0, perulangan berhenti.
     - Untuk Nilai Negatif : jika menginputkan nilai negatif (misal -87), perulangan while (nilai != 0) akan terus berjalan (looping selamanya atau samai memori penuh) karena angka negatif yang dibagi 2 di Java bisa jadi tidak pernah tepat menyentuh angka 0. Itulah kenapa nilai > 0 sebenarnya lebih aman.
 
+# Latihan Praktikum
+
+    Code pada class Surat3.java :
+```java
+    package Jobsheet9;
+
+    public class Surat3 {
+        String idSurat;
+        String namaMahasiswa;
+        String kelas;
+        char jenisIzin;
+        int durasi;
+
+        // Konstruktor kosong
+        Surat3(){
+
+        }
+
+        // Konstruktor berparameter
+        Surat3(String idSurat, String namaMahasiswa, String kelas, char jenisIzin, int durasi){
+            this.idSurat = idSurat;
+            this.namaMahasiswa = namaMahasiswa;
+            this.kelas = kelas;
+            this.jenisIzin = jenisIzin;
+            this.durasi = durasi;
+        }
+
+        void tampil() {
+            System.out.println("ID Surat    : " + idSurat);
+            System.out.println("Nama        : " + namaMahasiswa);
+            System.out.println("Kelas       : " + kelas);
+            System.out.println("Jenis Izin  : " + jenisIzin);
+            System.out.println("Durasi      : " + durasi + " hari");
+        }
+    }
+```
+    Code pada class StackSurat3.java : 
+```java
+    package Jobsheet9;
+
+    public class StackSurat3 {
+        Surat3[] stack;
+        int top;
+        int size;
+
+        public StackSurat3(int size) {
+            this.size = size;
+            stack = new Surat3[size];
+            top = -1;
+        } 
+
+        boolean isFull() {
+            return top == size - 1;
+        }
+
+        boolean isEmpty() {
+            return top == -1;
+        }
+        
+        void push(Surat3 s) {
+            if (!isFull()) {
+                stack[++top] = s;
+            } else {
+                System.out.println("Stack penuh!");
+            }
+        }
+
+        Surat3 pop() {
+            if (!isEmpty()) {
+                return stack[top--];
+            } else {
+                System.out.println("Tidak ada surat untuk diperoses!");
+                return null;
+            }
+        }
+
+        Surat3 peek() {
+            if (!isEmpty()) {
+                return stack[top];
+            } else {
+                System.out.println("Stack kosong!");
+                return null;
+            }
+        }
+
+        boolean cari(String nama){
+            for (int i = top; i >= 0; i--) {
+                if (stack[i].namaMahasiswa.equals(nama)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+```
+
+    Code pada class SuratDemo3.java : 
+```java
+    package Jobsheet9;
+
+    import java.util.Scanner;
+
+    public class SuratDemo3 {
+        public static void main(String[] args) {
+            Scanner sc = new Scanner(System.in);
+            StackSurat3 stack = new StackSurat3(10);
+
+            int pilih;
+
+            do {
+                System.out.println("\n--- MENU SURAT IZIN ---");
+                System.out.println("1. Terima Surat Izin");
+                System.out.println("2. Proses Surat Izin");
+                System.out.println("3. Lihat Surat Terakhir");
+                System.out.println("4. Cari Surat");
+                System.out.println("5. Keluar");
+                System.out.print("Pilih: ");
+                pilih = sc.nextInt();
+                sc.nextLine();
+
+                switch (pilih) {
+                    case 1:
+                        System.out.print("ID Surat: ");
+                        String id = sc.nextLine();
+                        System.out.print("Nama Mahasiswa: ");
+                        String nama = sc.nextLine();
+                        System.out.print("Kelas: ");
+                        String kelas = sc.nextLine();
+                        System.out.print("Jenis Izin (S/I): ");
+                        char jenis = sc.next().charAt(0);
+                        System.out.print("Durasi (hari): ");
+                        int durasi = sc.nextInt();
+
+                        Surat3 s = new Surat3(id, nama, kelas, jenis, durasi);
+                        stack.push(s);
+                        System.out.println("Surat berhasil ditambahkan!");
+                        break;
+                    
+                    case 2:
+                        Surat3 proses = stack.pop();
+                        if (proses != null) {
+                            System.out.println("Memproses surat:");
+                            proses.tampil();  
+                        }
+                        break;
+                    
+                    case 3:
+                        Surat3 lihat = stack.peek();
+                        if (lihat != null) {
+                            System.out.println("Surat terakhir:");
+                            lihat.tampil();
+                        }
+                        break;
+                    
+                    case 4:
+                        System.out.print("Masukkan nama mahasiswa: ");
+                        String cari = sc.nextLine();
+                        if (stack.cari(cari)) {
+                            System.out.println("Surat ditemukan!");
+                        } else {
+                            System.out.println("Surat tidak ditemukan.");
+                        }
+                        break;
+                    
+                    case 5:
+                        System.out.println("Keluar...");
+                        break;
+                
+                    default:
+                        System.out.println("Pilihan tidak valid");
+                }
+            } while (pilih != 5);
+        }
+    }
+```
